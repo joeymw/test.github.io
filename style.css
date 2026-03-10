@@ -67,6 +67,14 @@ nav a:hover {
 section {
   padding: 2.5rem 0;
   border-bottom: 1px solid #e5e7eb;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 section:last-of-type {
