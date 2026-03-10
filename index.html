@@ -43,8 +43,8 @@
             <h3>My Portfolio Website</h3>
             <p>Built with HTML, CSS, and JS to showcase my personal projects and diary.</p>
             <div class="project-links">
-              <a href="https://github.com/wym011103-ux/test.github.io">GitHub</a>
-              <a href="https://github.com/wym011103-ux">Profile</a>
+              <a href="https://github.com/joe/my-portfolio">GitHub</a>
+              <a href="https://joe.github.io/">Live demo</a>
             </div>
           </article>
         </div>
@@ -53,10 +53,7 @@
       <section id="production-diary">
         <h2>Production Diary – Week 5</h2>
         <p><strong>Date:</strong> 13 February 2026</p>
-        <p>This week I worked on my GitHub Pages portfolio website. I focused on creating or improving the main sections (About, Projects, Skills, Contact) and setting up my CS Maths & Tools page.</p>
-        <p>I am most happy with learning basic knowledge through practice. For example: creating a basic website that only has basic functions such as play video and audio could help me connect the foundations all together. It's really easy to memorize and review the knowledge this way.</p>
-        <p>I found it difficult to learn some abstract concepts, such as different types of image licenses and how they work. It is not only hard to understand the logic behind them, but I am also frequently interrupted by many technical terms.</p>
-        <p>Next time I want to improve my ability to understand abstract problems. I believe that using AI tools or asking professionals, such as tutors, for help will make it easier to solve problems that involve technical terms or complex concepts.</p>
+        <p>This week I worked on my GitHub Pages portfolio website...</p>
       </section>
 
       <section id="contact">
@@ -106,6 +103,17 @@
           document.getElementById("form-status").textContent = "Failed to send message.";
         }
       });
+
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(section => observer.observe(section));
     </script>
   </body>
 </html>
