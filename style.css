@@ -22,11 +22,12 @@ body {
 .page-wrap {
   max-width: 960px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 0;
 }
 
+/* ===== Header ===== */
 header {
-  padding: 1.5rem 0 1rem;
+  padding: 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,7 +37,6 @@ header {
 .site-title {
   font-size: 1.6rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
 }
 
 nav ul {
@@ -56,58 +56,45 @@ nav a {
   transition: background 0.2s, color 0.2s;
 }
 
-nav a:hover,
-nav a:focus {
+nav a:hover {
   background: var(--accent-soft);
   color: var(--accent);
 }
 
-section {
-  padding: 2.5rem 0;
-  border-bottom: 1px solid #e5e7eb;
+/* ===== 全屏区块 ===== */
+.full-screen-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
 }
 
-section:last-of-type {
-  border-bottom: none;
+.section-content {
+  max-width: 700px;
 }
 
-section h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-section h2 {
-  font-size: 1.4rem;
-  margin-bottom: 0.75rem;
-}
-
+/* ===== Typography ===== */
+section h1,
+section h2,
 section p {
-  max-width: 60ch;
-  margin-bottom: 0.75rem;
-}
-
-.highlight {
-  background: var(--accent-soft);
-  border-left: 4px solid var(--accent);
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
+  margin: 0.75rem 0;
 }
 
 section ul {
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
+  list-style: none;
+  padding: 0;
+  display: inline-block;
+  text-align: left;
+  margin: 1rem auto 0;
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
+section ul li {
+  margin-bottom: 0.5rem;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
+/* ===== Projects Grid ===== */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -115,6 +102,7 @@ a:hover {
   margin-top: 1.5rem;
 }
 
+/* ===== Project Card ===== */
 .project-card {
   background: #ffffff;
   border-radius: 0.75rem;
@@ -126,25 +114,10 @@ a:hover {
   gap: 0.5rem;
 }
 
-.project-card h3 {
-  margin: 0;
-  font-size: 1.1rem;
-}
-
-.project-card p {
-  margin: 0;
-  font-size: 0.95rem;
-}
-
 .project-meta {
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
   color: #6b7280;
-}
-
-.project-links {
-  margin-top: 0.5rem;
 }
 
 .project-links a {
@@ -158,6 +131,7 @@ a:hover {
   text-decoration: underline;
 }
 
+/* ===== Button ===== */
 .button {
   display: inline-flex;
   align-items: center;
@@ -168,43 +142,18 @@ a:hover {
   color: #ffffff;
   font-size: 0.95rem;
   font-weight: 500;
-  text-decoration: none;
   border: none;
   cursor: pointer;
   transition: background 0.15s, transform 0.1s;
   box-shadow: 0 10px 18px rgba(37, 99, 235, 0.25);
 }
 
-.button:hover,
-.button:focus {
+.button:hover {
   background: #1d4ed8;
   transform: translateY(-1px);
 }
 
-.button-secondary {
-  background: transparent;
-  color: var(--accent);
-  box-shadow: none;
-  border: 1px solid var(--accent);
-}
-
-.button-secondary:hover,
-.button-secondary:focus {
-  background: var(--accent-soft);
-}
-
-/* ===== Scroll reveal 动画 ===== */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* ===== Contact 板块优化 ===== */
+/* ===== Contact Form ===== */
 .contact-card {
   background: #ffffff;
   padding: 2rem;
@@ -229,8 +178,6 @@ a:hover {
   border-radius: 0.75rem;
   border: 1px solid #d1d5db;
   font-size: 0.95rem;
-  font-family: var(--font-base);
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .contact-card input:focus,
@@ -240,6 +187,14 @@ a:hover {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
-.contact-card button {
-  align-self: flex-start;
+/* ===== Scroll Reveal 动画 ===== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
