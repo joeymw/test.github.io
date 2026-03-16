@@ -27,6 +27,38 @@ section h1, section h2, section p { margin:0.75rem 0; }
 section ul { list-style:none; padding:0; display:inline-block; text-align:left; margin:1rem auto 0; }
 section ul li { margin-bottom:0.5rem; }
 
+/* About section: two-column layout */
+.about-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  flex-wrap: wrap; /* 响应式 */
+}
+.about-left, .about-right {
+  flex: 1 1 400px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about-left {
+  align-items: flex-start; /* 左中对齐 */
+}
+.about-title {
+  font-size: 3rem;
+  font-family: 'Permanent Marker', cursive;
+  color: #d19be8;
+  margin: 0 0 1rem 0;
+}
+.about-intro {
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
 /* Projects */
 .projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.5rem; margin-top:1.5rem; }
 .project-card { background:#fff; border-radius:.75rem; padding:1.25rem; box-shadow:0 8px 20px rgba(15,23,42,0.06); border:1px solid #e5e7eb; display:flex; flex-direction:column; gap:.5rem; }
