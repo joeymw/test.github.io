@@ -22,20 +22,20 @@
       </header>
 
       <section id="about" class="scroll-reveal">
-        <h1>Welcome to My Website!</h1>
-        <p>Hello! My name is Joe and this is my first website.</p>
-        <h2>About Me</h2>
-        <p>I am learning web development at the University of York.</p>
-        <h2>My Interests</h2>
+        <h1 class="scroll-reveal">Welcome to My Website!</h1>
+        <p class="scroll-reveal">Hello! My name is Joe and this is my first website.</p>
+        <h2 class="scroll-reveal">About Me</h2>
+        <p class="scroll-reveal">I am learning web development at the University of York.</p>
+        <h2 class="scroll-reveal">My Interests</h2>
         <ul>
-          <li>Web Development</li>
-          <li>Computer Science</li>
-          <li>Technology</li>
+          <li class="scroll-reveal">Web Development</li>
+          <li class="scroll-reveal">Computer Science</li>
+          <li class="scroll-reveal">Technology</li>
         </ul>
       </section>
 
       <section id="projects" class="scroll-reveal">
-        <h2>Projects</h2>
+        <h2 class="scroll-reveal">Projects</h2>
         <div class="projects-grid">
           <article class="project-card scroll-reveal">
             <div class="project-meta">Web App · 2026</div>
@@ -46,40 +46,48 @@
               <a href="https://github.com/wym011103-ux">Profile</a>
             </div>
           </article>
-          <!-- 你可以复制更多 project-card 并保持 scroll-reveal 类 -->
+          <article class="project-card scroll-reveal">
+            <div class="project-meta">Web App · 2025</div>
+            <h3>CS Maths & Tools</h3>
+            <p>A small tool collection to practice CS & Maths concepts.</p>
+            <div class="project-links">
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+          <!-- 可继续添加更多项目 -->
         </div>
       </section>
 
       <section id="production-diary" class="scroll-reveal">
-        <h2>Production Diary – Week 5</h2>
-        <p><strong>Date:</strong> 13 February 2026</p>
-        <p>This week I worked on my GitHub Pages portfolio website. I focused on creating or improving the main sections (About, Projects, Skills, Contact) and setting up my CS Maths & Tools page.</p>
-        <p>I am most happy with learning basic knowledge through practice. For example: creating a basic website that only has basic functions such as play video and audio could help me connect the foundations all together. It's really easy to memorize and review the knowledge this way.</p>
-        <p>I found it difficult to learn some abstract concepts, such as different types of image licenses and how they work. It is not only hard to understand the logic behind them, but I am also frequently interrupted by many technical terms.</p>
-        <p>Next time I want to improve my ability to understand abstract problems. I believe that using AI tools or asking professionals, such as tutors, for help will make it easier to solve problems that involve technical terms or complex concepts.</p>
+        <h2 class="scroll-reveal">Production Diary – Week 5</h2>
+        <p class="scroll-reveal"><strong>Date:</strong> 13 February 2026</p>
+        <p class="scroll-reveal">This week I worked on my GitHub Pages portfolio website. I focused on creating or improving the main sections (About, Projects, Skills, Contact) and setting up my CS Maths & Tools page.</p>
+        <p class="scroll-reveal">I am most happy with learning basic knowledge through practice. For example: creating a basic website that only has basic functions such as play video and audio could help me connect the foundations all together. It's really easy to memorize and review the knowledge this way.</p>
+        <p class="scroll-reveal">I found it difficult to learn some abstract concepts, such as different types of image licenses and how they work. It is not only hard to understand the logic behind them, but I am also frequently interrupted by many technical terms.</p>
+        <p class="scroll-reveal">Next time I want to improve my ability to understand abstract problems. I believe that using AI tools or asking professionals, such as tutors, for help will make it easier to solve problems that involve technical terms or complex concepts.</p>
       </section>
 
       <section id="contact" class="scroll-reveal">
-        <h2>Get In Touch</h2>
+        <h2 class="scroll-reveal">Get In Touch</h2>
         <form id="contact-form">
-          <div>
+          <div class="scroll-reveal">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" required placeholder="Jane Smith"/>
           </div>
 
-          <div>
+          <div class="scroll-reveal">
             <label for="email">Your Email</label>
             <input type="email" id="email" name="email" required placeholder="jane@example.com"/>
           </div>
 
-          <div>
+          <div class="scroll-reveal">
             <label for="message">Message</label>
             <textarea id="message" name="message" required placeholder="Say hello..." rows="5"></textarea>
           </div>
 
-          <button type="submit" class="button">Send Message</button>
+          <button type="submit" class="button scroll-reveal">Send Message</button>
         </form>
-        <p id="form-status"></p>
+        <p id="form-status" class="scroll-reveal"></p>
       </section>
 
     </div>
@@ -112,7 +120,7 @@
         }
       });
 
-      // ===== Scroll reveal 动画 =====
+      // ===== Scroll reveal 动画（瀑布流延迟版） =====
       const scrollElements = document.querySelectorAll('.scroll-reveal');
 
       function elementInView(el, offset = 100) {
@@ -120,18 +128,19 @@
         return elementTop <= (window.innerHeight - offset);
       }
 
-      function displayScrollElement(el, index = 0) {
-        // 如果是 project-card, 设置递增延迟
-        if(el.classList.contains('project-card')) {
-          el.style.transitionDelay = `${index * 0.15}s`;
-        }
+      function displayScrollElement(el, delay = 0) {
+        el.style.transitionDelay = `${delay}s`;
         el.classList.add('visible');
       }
 
       function handleScroll() {
-        scrollElements.forEach((el, i) => {
-          if (elementInView(el, 100)) {
-            displayScrollElement(el, i);
+        let delayCounter = 0;
+        scrollElements.forEach(el => {
+          if (elementInView(el, 100) && !el.classList.contains('visible')) {
+            // 对 project-card 内部元素增加阶梯延迟
+            let delay = el.classList.contains('project-card') ? delayCounter * 0.15 : 0;
+            displayScrollElement(el, delay);
+            if (el.classList.contains('project-card')) delayCounter++;
           }
         });
       }
