@@ -69,25 +69,27 @@
 
       <section id="contact" class="scroll-reveal">
         <h2 class="scroll-reveal">Get In Touch</h2>
-        <form id="contact-form">
-          <div class="scroll-reveal">
-            <label for="name">Your Name</label>
+        <p class="scroll-reveal">Feel free to send me a message. I’d love to hear from you!</p>
+
+        <form id="contact-form" class="contact-card scroll-reveal">
+          <div class="form-group">
+            <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Jane Smith"/>
           </div>
 
-          <div class="scroll-reveal">
-            <label for="email">Your Email</label>
+          <div class="form-group">
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" required placeholder="jane@example.com"/>
           </div>
 
-          <div class="scroll-reveal">
+          <div class="form-group">
             <label for="message">Message</label>
             <textarea id="message" name="message" required placeholder="Say hello..." rows="5"></textarea>
           </div>
 
-          <button type="submit" class="button scroll-reveal">Send Message</button>
+          <button type="submit" class="button">Send Message</button>
+          <p id="form-status"></p>
         </form>
-        <p id="form-status" class="scroll-reveal"></p>
       </section>
 
     </div>
