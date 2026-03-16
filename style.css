@@ -132,12 +132,13 @@ section ul li { margin-bottom:0.5rem; }
   border-radius:1rem;
   border:1px solid rgba(255,255,255,0.15);
   box-shadow:0 20px 40px rgba(0,0,0,0.4), 0 0 15px rgba(255,255,255,0.08);
-  max-width:100%;       /* 最大限度横向拉伸 */
+  max-width:100%;
   margin:1rem auto 0;
   display:grid;
-  grid-template-columns: 1fr 1fr;  /* 两列布局 */
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   transition: transform 0.2s ease;
+  position: relative; /* 为蒙版定位 */
 }
 .contact-card:hover{ transform: translateY(-4px); }
 
@@ -148,44 +149,37 @@ section ul li { margin-bottom:0.5rem; }
   gap:0.75rem;
 }
 
+/* 修改输入框和文本域字体颜色为黑色 */
 .contact-card input,
 .contact-card textarea{
   width:100%;
   padding:.75rem 1rem;
   border-radius:0.75rem;
-  border:1.5px solid rgba(0,0,0,0.2); /* 边框更明显 */
+  border:1.5px solid rgba(0,0,0,0.2);
   font-size:1rem;
   background:rgba(255,255,255,0.08);
-  color:#fff;
+  color:#000000; /* 改为黑色 */
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.contact-card textarea { min-height:100px; }  /* 压缩高度 */
-
+.contact-card textarea { min-height:100px; }
 .contact-card input:focus, 
 .contact-card textarea:focus { 
   outline:none; 
   border-color:var(--accent); 
   box-shadow:0 0 0 3px rgba(59,130,246,0.2); 
 }
-
 .contact-card input::placeholder,
 .contact-card textarea::placeholder{ color:#9ca3af; }
 
-/* Ensure Contact Section matches page bg */
-#contact{ background: var(--bg); padding:2rem 1rem; color:inherit; }
-#contact h2{ color: var(--text); }
-#contact p{ color: #555; }
-
-/* Responsive: single column for smaller screens */
-@media(max-width:900px){
-  .contact-card{ grid-template-columns: 1fr; }
-}
-
-/* Ensure Contact Section matches page bg */
 #contact{ background: var(--bg); padding:2rem 1.5rem; color:inherit; }
 #contact h2{ color: var(--text); }
 #contact p{ color: #555; }
+
+@media(max-width:900px){
+  .contact-card{ grid-template-columns: 1fr; }
+  .sidebar-toc{ display:none; }
+}
 
 /* Scroll reveal */
 .scroll-reveal { opacity:0; transform:translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
@@ -197,11 +191,55 @@ section ul li { margin-bottom:0.5rem; }
 .slide-right { transform: translateX(100px); opacity:0; transition: transform 0.8s ease-out, opacity 0.8s ease-out; }
 .slide-right.visible { transform: translateX(0); opacity:1; }
 
-/* Responsive TOC hide */
-@media(max-width:900px){ .sidebar-toc{ display:none; } }
-
 /* Hero Section */
 .hero-name{ font-size:3.8rem; font-weight:700; margin-bottom:0.5rem; }
 .hero-subtitle{ font-size:1.3rem; color:#6b7280; margin-bottom:1rem; }
 .hero-description{ font-size:1.05rem; max-width:420px; margin-bottom:1.5rem; }
 .hero-buttons{ display:flex; gap:1rem; }
+
+/* Contact Form Success Overlay + Check Animation */
+.contact-success-overlay {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(255,255,255,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+.contact-success-overlay.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+}
+.contact-success-overlay svg {
+  width: 80px;
+  height: 80px;
+  overflow: visible;
+}
+.contact-success-overlay .success-circle {
+  stroke: #10b981;
+  stroke-width: 4;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  transform-origin: 50% 50%;
+  animation: draw-circle 0.6s ease-out forwards;
+}
+.contact-success-overlay .success-check {
+  stroke: #10b981;
+  stroke-width: 4;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: draw-check 0.4s ease-out forwards;
+  animation-delay: 0.6s;
+}
+@keyframes draw-circle { to { stroke-dashoffset: 0; } }
+@keyframes draw-check { to { stroke-dashoffset: 0; } }
