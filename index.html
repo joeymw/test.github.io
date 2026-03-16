@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First Website</title>
     <link rel="stylesheet" href="style.css">
+    <!-- 手写字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="page-wrap">
 
+      <!-- Header -->
       <header class="scroll-reveal">
         <div class="site-title">Joe Wang</div>
         <nav>
@@ -21,21 +24,29 @@
         </nav>
       </header>
 
+      <!-- About Section -->
       <section id="about" class="scroll-reveal full-screen-section">
-        <div class="section-content scroll-reveal">
-          <h1>Welcome to My Website!</h1>
-          <p>Hello! My name is Joe and this is my first website.</p>
-          <h2>About Me</h2>
-          <p>I am learning web development at the University of York.</p>
-          <h2>My Interests</h2>
-          <ul>
-            <li>Web Development</li>
-            <li>Computer Science</li>
-            <li>Technology</li>
-          </ul>
+        <div class="about-container scroll-reveal">
+          <!-- 左侧 -->
+          <div class="about-left">
+            <h1 class="about-title">Welcome to My Website!</h1>
+            <p class="about-intro">Hello! My name is Joe and this is my first website.</p>
+          </div>
+          <!-- 右侧 -->
+          <div class="about-right">
+            <h2>About Me</h2>
+            <p>I am learning web development at the University of York.</p>
+            <h2>My Interests</h2>
+            <ul>
+              <li>Web Development</li>
+              <li>Computer Science</li>
+              <li>Technology</li>
+            </ul>
+          </div>
         </div>
       </section>
 
+      <!-- Projects Section -->
       <section id="projects" class="scroll-reveal full-screen-section">
         <div class="section-content scroll-reveal">
           <h2>Projects</h2>
@@ -61,6 +72,7 @@
         </div>
       </section>
 
+      <!-- Production Diary -->
       <section id="production-diary" class="scroll-reveal full-screen-section">
         <div class="section-content scroll-reveal">
           <h2>Production Diary – Week 5</h2>
@@ -72,6 +84,7 @@
         </div>
       </section>
 
+      <!-- Contact Section -->
       <section id="contact" class="scroll-reveal full-screen-section">
         <div class="section-content scroll-reveal">
           <h2>Get In Touch</h2>
@@ -100,6 +113,7 @@
 
     </div>
 
+    <!-- Scripts -->
     <script>
       const SUPABASE_URL = "https://onnovsqelgftttfuejoy.supabase.co";
       const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ubm92c3FlbGdmdHR0ZnVlam95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTc4MjYsImV4cCI6MjA4ODU5MzgyNn0.m-VR_3SDChpcRRk901bHJ891EEA8m1fd4H5c-CQdLDE";
