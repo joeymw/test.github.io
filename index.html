@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet" />
-
+</head>
 <body>
   <div class="page-wrap">
     <!-- Header -->
@@ -221,6 +221,9 @@
   <!-- Supabase JS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <!-- Runtime config -->
+  <script src="config.js"></script>
+
   <!-- Scripts -->
   <script>
     const revealElements = document.querySelectorAll(".scroll-reveal, .slide-left, .slide-right");
@@ -285,8 +288,8 @@
       });
     });
 
-    const SUPABASE_URL = "https://onnovsqelgftttfuejoy.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ubm92c3FlbGdmdHR0ZnVlam95Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTc4MjYsImV4cCI6MjA4ODU5MzgyNn0.m-VR_3SDChpcRRk901bHJ891EEA8m1fd4H5c-CQdLDE";
+    const SUPABASE_URL = window.APP_CONFIG?.SUPABASE_URL?.trim() || "";
+    const SUPABASE_ANON_KEY = window.APP_CONFIG?.SUPABASE_ANON_KEY?.trim() || "";
 
     const form = document.getElementById("contact-form");
     const overlay = document.getElementById("success-overlay");
@@ -295,8 +298,8 @@
 
     const supabaseEnabled =
       typeof window.supabase !== "undefined" &&
-      SUPABASE_URL.trim() !== "" &&
-      SUPABASE_ANON_KEY.trim() !== "";
+      SUPABASE_URL !== "" &&
+      SUPABASE_ANON_KEY !== "";
 
     const supabaseClient = supabaseEnabled
       ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
@@ -304,6 +307,10 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
+
+      if (!form.reportValidity()) {
+        return;
+      }
 
       statusText.textContent = "";
       submitButton.disabled = true;
